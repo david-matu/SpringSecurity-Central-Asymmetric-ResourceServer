@@ -1,0 +1,73 @@
+server:
+  port: 9090
+  
+spring:
+  profiles:
+    active:
+    - prod
+    
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring_blog
+    username: root
+    password: root
+    
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  
+# SAME KEY AS USED IN THE AUTHN SERVER
+#jwt:
+#  key: 949U48i38ZDrP9urxJ8JBB5amz337cRP7/1iznFkg6U=
+
+#publicKey: -----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmz67pyUOEielKm2uscsF xhigAsDb5TQc/yIKi5s86NuhELDCvsF54br+P7dzoMYbo4QuuWeN0wyFhBbUZjHn 17PtZ5teWr9979/c4pYbTvmlmMPYU3TiX1Egq9Cc6y9P21yuYoMtvfH2Z1PaHpcH P9NGUYupfWcJrbcz0PndMGHPDPKaTptt8MJ1xX/qf4jGPgKKu9XhI8E+f4+hkIxY hO66CjLCS/GPn1Ia8WRv6u+dkZwoG7fF1zcCbhYwxshOVLI4289RXkIipnt27qUZ Rpddv8njGY1Opr0b3Zy2Up+RK4V6ee2/U/dnliSzkN/LIVhdsjHb0jUXWh1czx5g XwIDAQAB -----END PUBLIC KEY-----
+
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-uri: http://localhost:8080/oauth/token_key
+#      jwk:
+#        key-set-uri: http://localhost:8080/oauth/token_key
+        
+    client:
+      client-id: resourceserver
+      client-secret: dave123
+  
+# COMMENTING THE FOLLOWING BLOCK BECAUSE WE ARE NOT PROCEEDING WITH TOKEN INTROSPECTION WITH AUTHN SERVER, LET'S TRY BLACKBOARDING NOW'
+#  security:
+#    oauth2:
+#      resourceserver:
+#        opaquetoken:
+#          introspection-uri: http://localhost:8080/oauth/check_token
+#      
+#          client-id: resourceserver
+#          client-secret: dave123
+
+
+#security:
+#  oauth2:
+#    resource:
+#      token-info-uri: http://localhost:8080/oauth/check_token
+#      
+#    client:
+#      client-id: resourceserver
+#      client-secret: dave123
+
+#  
+#  jms:
+#    template:
+#      default-destination: blogcloud.post.queue
+#          
+#  artemis:
+#    mode: native
+#    broker-url: "tcp://artemis.localhost.com:61616"
+#    user: "dave"
+#    password: "dave123"
+#    
+#  
+#  rabbitmq:
+#    host: "localhost.com"
+#    port: 5673
+#    username: "dave"
+#    password: "dave123"
